@@ -1,2 +1,50 @@
 <h1>Employees#show</h1>
-<p>Find me in app/views/employees/show.html.erb</p>
+<% if flash[:notice] %> 
+  <% flash.each do |name,msg| %>
+    <h3 style="color:green;"><%= msg %></h3>
+  <% end %>
+<% end %>
+<h2>Employee Details </h2>
+<div>
+  <p>
+    <strong>Employee Id:</strong>
+    <%= @employee.id %>
+  </p>
+  <p>
+    <strong>Employee Name:</strong>
+    <%= @employee.employee_name %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= @employee.email%>
+  </p>
+  <p>
+    <strong>Gender:</strong>
+    <%= @employee.gender %>
+  </p>
+  <p>
+    <strong>Hobbies </strong>
+    <%= @employee.hobbies %>
+  </p>
+  <p>
+    <strong>Address:</strong><br/>
+    <%= @employee.address %>
+  </p>
+  <p>
+    <strong>Mobile Number:</strong><br/>
+    <%= @employee.mobile_number %>
+  </p>
+  <p>
+    <strong>Date of Birth:</strong><br/>
+    <%= @employee.birth_date %>
+  </p>
+  <p>
+    <strong>Document:</strong><br/>
+    <% if @employee.document.attached? %>
+      <%= image_tag @employee.document, style: "width: 100px; display: block:" %>
+    <% end %>
+  </p>
+</div>
+
+<%= button_to 'Edit', edit_employee_path(@employee), method: :get%>
+<%= button_to 'Delete', employee_path(@employee), method: :delete%>
