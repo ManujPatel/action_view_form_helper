@@ -1,0 +1,60 @@
+<%= form_with(model: @employee) do |form| %>
+        <%= form.label :employee_name,"Employee Name", style: "display: block"%>
+        <%= form.text_field :employee_name %>
+      
+       
+        <%= form.label :email, style: "display: block" %>
+        <%= form.email_field :email %>
+      
+      
+        <%= form.label :password,"Password", style: "display: block" %>
+        <%= form.password_field :password%>
+        <br>
+        Gender: 
+        <%= form.radio_button :gender, "Male" %>
+        <%= form.label :gender_male, "Male" %>
+        <%= form.radio_button :gender, "Female" %>
+        <%= form.label :gender_female, "Female" %>  
+        <br>
+        Hobbies:
+        <%= form.check_box :hobbies, {multiple: true}, "photography",false %>
+        <%= form.label "photography" %>
+        <%= form.check_box :hobbies, {multiple: true}, "videography",false %>
+        <%= form.label "videography" %>
+        <%= form.check_box :hobbies, {multiple: true}, "cinematography",false %>
+        <%= form.label "cinematography" %>
+        <%= form.check_box :hobbies, {multiple: true}, "choreography",false %>
+        <%= form.label "choreography" %>
+      
+        <%= form.label :address,"Address", style: "display: block"%>
+        <%= form.text_field :address %>
+        <% i=1 %>
+        <%= form.fields_for :addresses do |a_form| %>
+          Address  <%=i%><% i+=1 %>:<br/>
+          <%= a_form.label :house_name, "House Name" %>
+          <%= a_form.text_field :house_name %>
+          <%= a_form.label :street_name, "Street Name" %>
+          <%= a_form.text_field :street_name %>
+          <%= a_form.label :road, "Road" %>
+          <%= a_form.text_field :road %>
+        <% end %>
+      
+        <%= form.label :mobile_number,"Mobile Number", style: "display: block" %>
+        <%= form.number_field :mobile_number%>
+      
+        <%= form.label :birth_date,"Date of Birth", style: "display: block" %>
+        <%= form.date_field :birth_date%>
+      
+        <%= form.label :document, style: "display: block" %>
+        <%= form.file_field :document%>
+      
+      <%=form.submit%>
+    
+  <% end %>
+  <% if flash[:errors] %>
+      <ul>
+        <% flash[:errors].each do |error| %>
+          <li style="color:red;"><%= error %></li>
+        <% end %>
+      </ul>
+  <% end %>
