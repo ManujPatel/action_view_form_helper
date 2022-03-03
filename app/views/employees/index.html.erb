@@ -3,7 +3,7 @@
     <tr><center>Employees Details </center></tr>
     <tr class="table table-dark">
     <td>Employee Id</td><td>Name</td><td>Email</td><td>Show</td>  
-    <td>Edit</td><td>Delete</td> 
+    <td>Edit</td>
     </tr>
     <% @employees.each do |s| %>
       <tr>
@@ -16,3 +16,4 @@
     <% end %>
   </table>
   <%= button_to "Add a New Employee", new_employee_path,method: :get %>
+  <%= button_to 'Search', employees_search_path, method: :get%>

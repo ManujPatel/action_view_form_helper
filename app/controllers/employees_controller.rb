@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  # frozen_string_literal: true
   before_action :set, only: [:show, :edit, :update, :destroy]
   def index
     @employees=Employee.all
@@ -6,6 +7,9 @@ class EmployeesController < ApplicationController
   
   def new
     @employee =Employee.new
+    2.times { @employee.addresses.build }
+
+    
   end
 
   def create
@@ -39,7 +43,18 @@ class EmployeesController < ApplicationController
     @employee.destroy
     redirect_to employees_path
   end
-
+  
+  def search
+    if params[:query]
+        if Employee.find(params[:query])
+          @employee = Employee.find(params[:query])
+          redirect_to employee_path(@employee)
+        else 
+          redirect_to employees_path
+        end
+        
+    end
+  end
 
   def set
     @employee = Employee.find(params[:id])
@@ -47,6 +62,6 @@ class EmployeesController < ApplicationController
 
   def employee_params
     params.require(:employee).permit(:employee_name, :email, :password,
-     :birth_date,:document,{hobbies:[]},:gender,:mobile_number,:address)
+     :birth_date,:document,{hobbies:[]},:gender,:mobile_number,:address,addresses_attributes: [:house_name, :street_name, :road])
   end
 end

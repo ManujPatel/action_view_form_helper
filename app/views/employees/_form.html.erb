@@ -4,7 +4,7 @@
       
        
         <%= form.label :email, style: "display: block" %>
-        <%= form.email_field :emai %>
+        <%= form.email_field :email %>
       
       
         <%= form.label :password,"Password", style: "display: block" %>
@@ -28,6 +28,16 @@
       
         <%= form.label :address,"Address", style: "display: block"%>
         <%= form.text_field :address %>
+        <% i=1 %>
+        <%= form.fields_for :addresses do |a_form| %>
+          Address  <%=i%><% i+=1 %>:<br/>
+          <%= a_form.label :house_name, "House Name" %>
+          <%= a_form.text_field :house_name %>
+          <%= a_form.label :street_name, "Street Name" %>
+          <%= a_form.text_field :street_name %>
+          <%= a_form.label :road, "Road" %>
+          <%= a_form.text_field :road %>
+        <% end %>
       
         <%= form.label :mobile_number,"Mobile Number", style: "display: block" %>
         <%= form.number_field :mobile_number%>

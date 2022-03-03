@@ -1,7 +1,7 @@
 <h1>Employees#show</h1>
 <% if flash[:notice] %> 
   <% flash.each do |name,msg| %>
-    <h3 style="color:green;"><%= msg %></h3>
+    <hp style="color:green;"><%= msg %></p>
   <% end %>
 <% end %>
 <h2>Employee Details </h2>
@@ -28,7 +28,16 @@
   </p>
   <p>
     <strong>Address:</strong><br/>
-    <%= @employee.address %>
+    <%= @employee.address %><br>
+    <% @employee.addresses.each do |a|%>
+      <strong>House name:</strong>
+      <%= a.house_name%>
+      <strong>Street name:</strong>
+      <%= a.street_name%>
+      <strong>Road name:</strong>
+      <%= a.road%>
+      <br>
+    <%end%>
   </p>
   <p>
     <strong>Mobile Number:</strong><br/>
