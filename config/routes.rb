@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   #get 'employees/destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root'employees#index'
-  get 'employees/search'
   resources:employees
   # Defines the root path route ("/")
   # root "articles#index"

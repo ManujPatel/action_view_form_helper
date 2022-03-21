@@ -43,18 +43,6 @@ class EmployeesController < ApplicationController
     @employee.destroy
     redirect_to employees_path
   end
-  
-  def search
-    if params[:query]
-        if Employee.find(params[:query])
-          @employee = Employee.find(params[:query])
-          redirect_to employee_path(@employee)
-        else 
-          redirect_to employees_path
-        end
-        
-    end
-  end
 
   def set
     @employee = Employee.find(params[:id])
